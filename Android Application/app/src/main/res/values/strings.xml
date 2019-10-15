@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PHARMACAT</string>
+    <string name="not_a_member">Not a Memeber? Sign Up!</string>
+    <string name="Register">Register</string>
+    <string name="Login">Login</string>
+    <string name="already_member">Already a Member? Sign Up!</string>
+    <string name="navigation_drawer_open">open navigation Drawer</string>
+    <string name="navigation_drawer_close">Close navigation Drawer</string>
+</resources>
