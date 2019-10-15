@@ -22,7 +22,7 @@ venv\scripts\activate
 pip install -r requirements.txt
 ```
 
-**Documentation for PharmaCat JSON API**
+**Documentation for PharmaCat RESTFUL JSON API**
 
 
 | Method | URL                                                                | USE                                                     |
