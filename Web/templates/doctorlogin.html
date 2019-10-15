@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<title>PharmaCat | Doctor Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/static/img/favicon.png">
+<link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type=text/css href="{{url_for('static',filename='css/login1.css')}}" >
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="back">
+  <div class="backRight"></div>
+  <div class="backLeft"></div>
+</div>
+
+<div id="slideBox">
+  <div class="topLayer">
+    <div class="left">
+      <div class="content">
+        <h2>Doctor Sign Up</h2>
+        <form method="post" action="{{ url_for('docregister') }}">
+          <div class="form-group">
+              <input type="text" name="full_name" placeholder="Doctor's Full Name" />
+              <br><br>
+            <div class="dropdown">       
+              <select name="specialization" placeholder="Doctor's Specialization" style="padding: 10px;border:0px;font-size: 15px;outline: none;">
+                 <option value="Dermatologist">Dermatologist</option>
+                 <option value="Allergist/Immunologists">Allergist/Immunologists</option>
+                 <option value="Gastroenterologist">Gastroenterologist</option>
+                 <option value="Hepatologist">Hepatologist</option>
+                 <option value="Pharmacologist">Pharmacologist</option>
+                 <option value="HIV Specialist">HIV Specialist</option>
+                 <option value="Endocrinologist">Endocrinologist</option>
+                 <option value="Asthma Specialist">Asthma Specialist</option>
+                  <option value="Cardiologist">Cardiologist</option>
+                  <option value="Otolaryngologist">Otolaryngologist</option>
+                  <option value="Paralysis Doctor">Paralysis Doctor</option>
+                  <option value="General Physician">General Physician</option>
+                  <option value="Microbiologist">Microbiologist</option>
+                  <option value="Pulmonologists">Pulmonologists</option>
+                  <option value="Pediatric">Pediatric</option>
+                  <option value="Proctologist">Proctologist</option>
+                  <option value="ENT Specialist">ENT Specialist</option>
+                  <option value="Urologist">Urologist</option>
+                  <option value="Expert Physician">Expert Physician</option>
+                  <option value="Physician">Physician</option>
+               </select>
+              </div>
+            <input type="text" name="username" placeholder="Doctor's Username" />
+               <input type="text" name="email" placeholder="Doctor's Email" />
+               <input type="text" name="registration_number" placeholder="Doctor's Registration Number" />
+               <input type="text" name="address" placeholder="Doctor's Address" />
+               <input type="password" name="password" placeholder="Doctor's Password" />
+               <input type="text" name="contact_number" placeholder="Doctor's Contact Number" />
+          </div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+          <div class="form-group"></div>
+            
+        <button type="submit">Sign up</button>
+           
+          
+        </form> 
+          <button id="goLeft" class="off">Login</button><br>
+        
+      </div>
+    </div>
+    <div class="right">
+      <div class="content">
+        <h2>Doctor Login</h2>
+        <form method="POST" action="{{ url_for('doclogin') }}">
+          <div class="form-group">
+            <label for="username"  class="form-label" id="username">Username </label>
+              <input type="text" name="username"/>
+          </div>
+            <br>
+            <div class="form-group">
+          <label for="password" class="form-label" id="password">Password </label>
+              <br>
+            <input type="password" name="password"/>
+          </div>
+            
+            
+     
+          <button  type="submit">Login</button>
+        </form>
+               <button id="goRight" class="off">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Inspiration from: http://ertekinn.com/loginsignup/-->
+<!-- partial -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script type="text/javascript"
+         src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script></script>
+
+</body>
+</html>
+
+   
