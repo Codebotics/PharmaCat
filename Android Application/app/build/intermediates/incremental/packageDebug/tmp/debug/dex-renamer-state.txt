@@ -1,4 +1,0 @@
-#Sat Oct 12 19:57:02 IST 2019
-base.0=D\:\\Android Studio Projects\\PHARMACAT\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
