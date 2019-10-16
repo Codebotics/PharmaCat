@@ -114,7 +114,7 @@ def hospital(token):
     l=""
     for i in range(0,len(str1)):
         l=l+str1[i]+"+"
-    send_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+l+'&key=AIzaSyCXkJwj_YIMQhJjUd-aF7LKjvcOd_5AzcU' 
+    send_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+l+'&key='+API_KEY
     r = requests.get(send_url) 
     j = json.loads(r.text) 
     lat = j['results'][0]['geometry']['location']['lat']
@@ -582,7 +582,7 @@ def hospitals():
         l=""
         for i in range(0,len(str1)):
             l=l+str1[i]+"+"
-        send_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+l+'&key=AIzaSyCXkJwj_YIMQhJjUd-aF7LKjvcOd_5AzcU' 
+        send_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+l+'&key='+API_KEY 
         r = requests.get(send_url) 
         j = json.loads(r.text) 
         lat = j['results'][0]['geometry']['location']['lat']
@@ -624,7 +624,7 @@ def hospitalset():
         l=""
         for i in range(0,len(str1)):
             l=l+str1[i]+"+"
-        send_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+l+'&key=AIzaSyCXkJwj_YIMQhJjUd-aF7LKjvcOd_5AzcU' 
+        send_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+l+'&key='+API_KEY
         r = requests.get(send_url) 
         j = json.loads(r.text) 
         lat = j['results'][0]['geometry']['location']['lat']
@@ -675,7 +675,7 @@ def book():
         l=""
         for i in range(0,len(str1)):
             l=l+str1[i]+"+"
-        send_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+l+'&key=AIzaSyCXkJwj_YIMQhJjUd-aF7LKjvcOd_5AzcU' 
+        send_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+l+'&key='+API_KEY
         r = requests.get(send_url) 
         j = json.loads(r.text) 
         lat = j['results'][0]['geometry']['location']['lat']
