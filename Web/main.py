@@ -109,8 +109,7 @@ def hospital(token):
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM users WHERE Username = %s', [username])
     account = cursor.fetchone()
-    API_KEY = 'AIzaSyCXkJwj_YIMQhJjUd-aF7LKjvcOd_5AzcU'
-
+    API_KEY = 'your google api key'
     str1 = str(account[5]).split(",")
     l=""
     for i in range(0,len(str1)):
@@ -578,8 +577,7 @@ def hospitals():
         else:
             address = account[5]
         # enter your api key here 
-        API_KEY = 'AIzaSyCXkJwj_YIMQhJjUd-aF7LKjvcOd_5AzcU'
-
+        API_KEY = 'your google api key'
         str1 = str(address).split(",")
         l=""
         for i in range(0,len(str1)):
@@ -621,8 +619,7 @@ def hospitalset():
         cursor.execute('SELECT * FROM doctors WHERE ID = %s', [session['id']])
         account = cursor.fetchone()
         # enter your api key here 
-        API_KEY = 'AIzaSyCXkJwj_YIMQhJjUd-aF7LKjvcOd_5AzcU'
-
+        API_KEY = 'your google api key'
         str1 = str(account[9]).split(",")
         l=""
         for i in range(0,len(str1)):
@@ -673,8 +670,7 @@ def book():
         else:
             address = account[5]
         # enter your api key here 
-        API_KEY = 'AIzaSyCXkJwj_YIMQhJjUd-aF7LKjvcOd_5AzcU'
-
+        API_KEY = 'your google api key'
         str1 = str(address).split(",")
         l=""
         for i in range(0,len(str1)):
