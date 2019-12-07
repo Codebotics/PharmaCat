@@ -2,7 +2,7 @@
 
 ![logo](https://i.imgur.com/zko8kft.jpg "PharmaCat logo was created by Prince Singh and Banner created by Apratim Shukla")
 
-### This project was created during the 24 hours Hackathon conducted by Microsoft Innovations Club,VIT Chennai and sponsored by Geek for Geeks.
+### Winner of the 24 hours Hackathon conducted by Microsoft Innovations Club,VIT Chennai and sponsored by Geek for Geeks.
 
 The PharmaCat Project is divided into **2 sections**:
 
