@@ -33,7 +33,7 @@ ipywidgets==7.4.2
 isort==4.3.20
 itsdangerous==1.1.0
 jedi==0.13.3
-Jinja2==2.10.1
+Jinja2==2.11.3
 joblib==0.13.2
 jsonschema==3.0.1
 jupyter==1.0.0
