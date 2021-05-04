@@ -2,7 +2,7 @@
 This script handles the execution of the Flask Web Server(Web Application + JSON API)
 """
 
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 from flaskext.mysql import MySQL
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
@@ -241,7 +241,10 @@ def diagnosesym(code):
 #Homepage
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if 'loggedin' not in session:
+        return render_template('index.html')
+    else:
+        return home()
 
 #Dashboard
 @app.route('/dashboard')
@@ -265,33 +268,45 @@ def home():
 #Patient Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if 'loggedin' not in session:
     # Output message if something goes wrong...
-    msg = ''
-    # Check if "username" and "password" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        # Create variables for easy access
-        username = request.form['username']
-        password = request.form['password']
-        # Check if account exists using MySQL
-        cursor = mysql.get_db().cursor()
-        cursor.execute('SELECT * FROM users WHERE Username = %s', (username))
-        # Fetch one record and return result
-        account = cursor.fetchone()
-        # If account exists in accounts table in out database
-        # if account:
-        if bcrypt.checkpw(password.encode('utf-8'), account[2].encode('utf-8')):
-            # Create session data, we can access this data in other routes
-            session['loggedin'] = True
-            session['id'] = account[0]
-            session['username'] = account[1]
-            session['api'] = account[8]
-            session['isdoctor'] = 0
-            # Redirect to dashboard
-            return home()
-        else:
-            # Account doesnt exist or username/password incorrect
-            msg = 'Incorrect username/password!'
-    # Show the login form with message (if any)
+        msg = None
+        # Check if "username" and "password" POST requests exist (user submitted form)
+        if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+            # Create variables for easy access
+            username = request.form['username']
+            password = request.form['password']
+            if(username and password):
+            # Check if account exists using MySQL
+                cursor = mysql.get_db().cursor()
+                cursor.execute('SELECT * FROM users WHERE Username = %s', (username))
+                # Fetch one record and return result
+                account = cursor.fetchone()
+                # If account exists in accounts table in out database
+                if account:
+                    if bcrypt.checkpw(password.encode('utf-8'), account[2].encode('utf-8')):
+                        # Create session data, we can access this data in other routes
+                        session['loggedin'] = True
+                        session['id'] = account[0]
+                        session['username'] = account[1]
+                        session['api'] = account[8]
+                        session['isdoctor'] = 0
+                        # Redirect to dashboard
+                        return home()
+                    else:
+                        # Account doesnt exist or username/password incorrect
+                        msg = 'Incorrect username/password!'
+                        flash(msg)
+                else:
+                    # Account doesnt exist or username/password incorrect
+                    msg = 'Incorrect username/password!'
+                    flash(msg)
+            else:
+                msg = 'Please provide both username and password!'
+                flash(msg)
+        # Show the login form with message (if any)
+    else:
+        return home()
     return render_template('patientlogin.html', msg=msg)
 
 #Patient Register
@@ -299,48 +314,61 @@ def login():
 def register():
     # Output message if something goes wrong...
     msg = ''
+    if('loggedin' not in session):
     # Check if "username", "password" and "email" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
-        # Create variables for easy access
-        username = request.form['username']
-        password = request.form['password']
-        email = request.form['email']
-        full_name = request.form['full_name']
-        address = request.form['address']
-        age = request.form['age']
-        blood = request.form['blood']
-        # Check if account exists using MySQL
-        cursor = mysql.get_db().cursor()
-        cursor.execute('SELECT * FROM users WHERE Username = %s', (username))
-        account = cursor.fetchone()
-        # If account exists show error and validation checks
-        if account:
-            msg = 'Account already exists!'
-        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            msg = 'Invalid email address!'
-        elif not re.match(r'[A-Za-z0-9]+', username):
-            msg = 'Username must contain only characters and numbers!'
-        elif not username or not password or not email:
+        if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+            # Create variables for easy access
+            username = request.form['username']
+            password = request.form['password']
+            email = request.form['email']
+            full_name = request.form['full_name']
+            address = request.form['address']
+            age = request.form['age']
+            blood = request.form['blood']
+            if(username and password and email and full_name and address and age and blood):
+                # Check if account exists using MySQL
+                cursor = mysql.get_db().cursor()
+                cursor.execute('SELECT * FROM users WHERE Username = %s', (username))
+                account = cursor.fetchone()
+                # If account exists show error and validation checks
+                if account:
+                    msg = 'Account already exists!'
+                    flash(msg)
+                elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+                    msg = 'Invalid email address!'
+                    flash(msg)
+                elif not re.match(r'[A-Za-z0-9]+', username):
+                    msg = 'Username must contain only characters and numbers!'
+                    flash(msg)
+                else:
+                    # Account doesnt exists and the form data is valid, now insert new account into users table
+                    apistr = username;
+                    result = hashlib.md5(apistr.encode()) 
+                    comb = username+'(~)'+password
+                    s = comb.encode()
+                    s1 = pybase64.b64encode(s)
+                    api=s1.decode('utf-8')
+                    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+                    cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s, %s, %s, %s, %s, %s)', (username, hashed_password, email, full_name, address, blood, age, api))
+                    cursor.execute('SELECT * FROM users WHERE Username = %s', (username))
+                    # Fetch one record and return result
+                    account = cursor.fetchone()
+                    session['loggedin'] = True
+                    session['id'] = account[0]
+                    session['username'] = account[1]
+                    session['api'] = account[8]
+                    session['isdoctor'] = 0
+                    msg = 'You have successfully registered!'
+                    return home()
+            else:
+                msg = 'Please fill out the form!'
+                flash(msg)
+        elif request.method == 'POST':
+            # Form is empty... (no POST data)
             msg = 'Please fill out the form!'
-        else:
-            # Account doesnt exists and the form data is valid, now insert new account into users table
-            apistr = username;
-            result = hashlib.md5(apistr.encode()) 
-            comb = username+'(~)'+password
-            s = comb.encode()
-            s1 = pybase64.b64encode(s)
-            api=s1.decode('utf-8')
-            #print(s1)
-            #r=pybase64.b64decode(s)
-            #print(r.decode('utf-8'))
-            
-            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-            cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s, %s, %s, %s, %s, %s)', (username, hashed_password, email, full_name, address, blood, age, api))
-            msg = 'You have successfully registered!'
-    elif request.method == 'POST':
-        # Form is empty... (no POST data)
-        msg = 'Please fill out the form!'
-    # Show registration form with message (if any)
+        # Show registration form with message (if any)
+    else:
+        return home()
     return render_template('patientlogin.html', msg=msg)
 
 #Doctor Register
@@ -425,10 +453,12 @@ def bmi():
         if request.method=='POST':
             h=request.form["height"]
             h=float(h)
+            h = h/100
             w=request.form["weight"]
             w=float(w)
             result=w/(h*h)
             result=round(result,2)
+            return render_template('bmi.html',ans=result,account=account, height=h, weight=w) 
         return render_template('bmi.html',ans=result,account=account) 
     return redirect(url_for('login'))
 
@@ -553,9 +583,9 @@ def diagnosedetails():
             loaded_model = pickle.load(open(filename, 'rb'))
             vect=cv.transform(data).toarray()
             p=loaded_model.predict(vect)
-            return render_template('diagnoseanswer.html',account=account,ans=p[0])
+            return render_template('diagnoseanswerNLP.html',account=account,ans=p[0])
         else:
-            return render_template('diagnosedetails.html',account=account)
+            return render_template('diagnoseNLP.html',account=account)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 

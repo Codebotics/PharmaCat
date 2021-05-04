@@ -106,7 +106,8 @@
                 <i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i>
             </button>
         
-        </div>        <div class="app-main">
+        </div>        
+        <div class="app-main">
                 <div class="app-sidebar sidebar-shadow">
                     <div class="app-header__logo">
                         <div class="logo-src"></div>
@@ -137,130 +138,79 @@
                                 </span>
                             </button>
                         </span>
-                    </div>    <div class="scrollbar-sidebar">
-                        <div class="app-sidebar__inner">
-                            <ul class="vertical-nav-menu">
-                                <li class="app-sidebar__heading">Dashboard</li>
-                                <li>
-                                    <a href="{{ url_for('home') }}">
-                                        <i class="metismenu-icon fa fa-terminal"></i>
-                                        Home
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a href="{{ url_for('bmi') }}">
-                                        <i class="metismenu-icon fa fa-user">
-                                        </i>BMI
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url_for('diagnose') }}" >
-                                        <i class="metismenu-icon fa fa-plus-circle">
-                                        </i>Diagnose(Symptoms)
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a href="{{ url_for('diagnosedetails') }}" class="mm-active">
-                                        <i class="metismenu-icon fa fa-plus-square">
-                                        </i>Diagnose(Text)
-                                    </a>
-                                </li>
-                                
-                                 <li>
-                                    <a href="{{ url_for('hospitals') }}">
-                                        <i class="metismenu-icon fa fa-rocket">
-                                        </i>Hospitals
-                                    </a>
-                                </li>
-                            </ul>
+                    </div>    
+                    {% block sidebar %}
+                    {% endblock %}
+                </div>
+                <div class="app-main__outer">
+                {% block body %}
+                {% endblock %}
+    <!-- <div class="app-main__inner">
+        <div class="app-page-title">
+            <div class="page-title-wrapper">
+                <div class="page-title-heading">
+                    <div class="page-title-icon">
+                        <i class="fa fa-plus-circle icon-gradient bg-amy-crisp"> </i>
+                    </div>
+                    <div>Diagnose
+                        <div class="page-title-subheading">Diagnose your problems easily with PharmaCat using our advanced Machine Learning based Predictors.
                         </div>
                     </div>
-                </div>    
-                <div class="app-main__outer">
-                    
-                    
-                    <div class="app-main__inner">
-                        <div class="app-page-title">
-                            <div class="page-title-wrapper">
-                                <div class="page-title-heading">
-                                    <div class="page-title-icon">
-                                        <i class="fa fa-file-text icon-gradient bg-amy-crisp"> </i>
+                </div>
+                </div>
+        </div>
+        
+        <div class="tab-content">
+            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-8">
+                        
+                <div class="main-card mb-3 card">
+                            <div class="card-body"><h5 class="card-title">Enter the Number of Symptoms</h5>
+                                
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-eg11-0" role="tabpanel">
+                                <form class="" action="{{ url_for('diagnoseproceed') }}" method="post">
+                                    <select class="mb-2 form-control" name="n">
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                    <button class="btn btn-primary">Proceed</button>
+                                </form>
+                            
+                       
+                                
+                                       
+                        
                                     </div>
-                                    <div>Diagnose
-                                        <div class="page-title-subheading">Diagnose your problems with PharmaCat on the basis of textual symptoms accurately describing your problem.
-                                        </div>
-                                    </div>
+                                    
                                 </div>
-                                </div>
+                            </div>
                         </div>
                         
-                        <div class="tab-content">
-                            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        
-                                <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">How are you feeling?</h5>
-                                                
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active" id="tab-eg11-0" role="tabpanel">
-                                            
-                                        
-                                            
-                                                     
-                                        
-                                            
-                                                <form class="" action="{{ url_for('diagnosedetails') }}" method="post">
-                                                    <div class="position-relative form-group"><label for="exampleText" class="">Elaborate your feelings here</label><textarea name="feel" id="exampleText" class="form-control"></textarea></div>
-                                                    <button class="btn btn-primary">Analyze</button>
-                                                </form>
-                                            
-                                       
-                                                
-                                                       
-                                        
-                                                    </div>
-                                                    <div class="tab-pane" id="tab-eg11-1" role="tabpanel"><p>Coming Soon!</p></div>
-                                                    <div class="tab-pane" id="tab-eg11-2" role="tabpanel"><p>Coming Soon!</p></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            
                     </div>
-                
-              <div class="app-wrapper-footer">
-                        <div class="app-footer">
-                            <div class="app-footer__inner">
-                                <div class="app-footer-left">
-                                    <ul class="nav">
-                                        <li class="nav-item">
-                                            
-                                                &copy; 2019 PharmaCat is an educational instance.
-                                            
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="app-footer-right">
-                                    <ul class="nav">
-                                        <li class="nav-item">
-                                            <a href="" class="nav-link">
-                                                Home
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
+                </div>
+            </div>
         </div>
-                
+            
+    </div> -->
+
+     <div class="app-wrapper-footer">
+        <div class="app-footer">
+            <div class="app-footer__inner">
+                <div class="app-footer-left">
+                    <ul class="nav">
+                        <li class="nav-item">
+                                &copy; 2021 PharmaCat is an educational instance.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
         </div>
     </div>
 <script type="text/javascript" src="{{ url_for('static', filename='assets/scripts/main.js') }}"></script></body>

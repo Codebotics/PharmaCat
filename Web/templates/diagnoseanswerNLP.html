@@ -19,14 +19,14 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url_for('diagnose') }}" class="mm-active">
+                <a href="{{ url_for('diagnose') }}">
                     <i class="metismenu-icon fa fa-plus-circle">
                     </i>Diagnose(Symptoms)
                 </a>
             </li>
             
             <li>
-                <a href="{{ url_for('diagnosedetails') }}">
+                <a href="{{ url_for('diagnosedetails') }}" class="mm-active">
                     <i class="metismenu-icon fa fa-plus-square">
                     </i>Diagnose(Text)
                 </a>
@@ -43,18 +43,16 @@
 </div>
 {% endblock %}
 
-
 {% block body %}
-
 <div class="app-main__inner">
     <div class="app-page-title">
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fa fa-plus-circle icon-gradient bg-amy-crisp"> </i>
+                    <i class="fa fa-file-text icon-gradient bg-amy-crisp"> </i>
                 </div>
                 <div>Diagnose
-                    <div class="page-title-subheading">Diagnose your problems easily with PharmaCat using our advanced Machine Learning based Predictors.
+                    <div class="page-title-subheading">Diagnose your problems with PharmaCat.
                     </div>
                 </div>
             </div>
@@ -67,20 +65,17 @@
                 <div class="col-lg-8">
                     
             <div class="main-card mb-3 card">
-                        <div class="card-body"><h5 class="card-title">Enter the Number of Symptoms</h5>
+                        <div class="card-body"><h5 class="card-title">Possible Disease</h5>
                             
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab-eg11-0" role="tabpanel">
-                            <form class="" action="{{ url_for('diagnoseproceed') }}" method="post">
-                                <select class="mb-2 form-control" name="n">
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                </select>
-                                <button class="btn btn-primary">Proceed</button>
-                            </form>
-                                </div>                                    
+                            <div class="mb-2 mr-2 badge badge-pill badge-danger">{{ ans }}</div>
+                                    
+                                    <br><br>
+                                    <h5 class="card-title">Not Happy with the response? </h5>
+                                    <a href="/chat" class="mb-2 mr-2 btn btn-primary" style="color:white;">Live Chat with a Doctor<span class="badge badge-light">BETA</span></a>
+                    <a href="{{ url_for('book') }}" class="mb-2 mr-2 btn btn-secondary" style="color:white;">Make an Appointment</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -88,6 +83,6 @@
                 </div>
             </div>
         </div>
-    </div>   
-</div>   
+    </div>              
+</div>
 {% endblock %}

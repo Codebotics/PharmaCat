@@ -7,6 +7,9 @@
 <link rel="icon" href="/static/img/favicon.png">
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" type=text/css href="{{url_for('static',filename='css/login.css')}}" >
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -17,9 +20,34 @@
 
 <div id="slideBox">
   <div class="topLayer">
+
+    <!-- Left - Register Form -->
     <div class="left">
       <div class="content">
-        <h2>Patient Sign Up</h2>
+        <div class="login">
+          <div class="login-triangle"></div>
+          <h2 class="login-header" style="color: #FFFFFF">Patient Sign Up</h2>
+          <form method="post" action="{{ url_for('register') }}" style="height:440px;overflow-y:auto" class="login-container">
+              <p><input type="text" placeholder="Full Name" name="full_name"></p>
+              <p><input type="text" placeholder="Username" name="username" /></p>
+              <p><input type="text" placeholder="Email" name="email"></p>
+              <p><input type="text" placeholder="Address" name="address"></p>
+              <p><select placeholder="Blood Group" name="blood" style="padding: 10px;border:0px;font-size: 15px;outline: none;">
+                 <option value="A+">A+</option>
+                 <option value="A-">A-</option>
+                 <option value="B+">B+</option>
+                 <option value="B-">B-</option>
+                 <option value="AB+">AB+</option>
+                 <option value="AB-">AB-</option>
+                 <option value="O+">O+</option>
+                 <option value="O-">O-</option>
+               </select></p>
+              <p><input type="text" placeholder="Age" name="age"></p>
+              <p><input type="password" placeholder="Password" name="password" /></p>
+              <p><input type="submit" value="Sign Up"></p>
+          </form>
+        </div>
+        <!-- <h2>Patient Sign Up</h2>
         <form method="post" action="{{ url_for('register') }}">
           <div class="form-group">
               <input type="text" placeholder="Full Name" name="full_name"/>
@@ -50,44 +78,46 @@
           <div class="form-group"></div>
         
         <button type="submit">Sign up</button>
-        </form>
-        <button id="goLeft" class="off">Login</button>
-        
+        </form> -->
+        <button id="goLeft" class="on" style="background-color: white; margin-top:10px; margin-bottom: 10px">Login</button>
       </div>
     </div>
+
+    <!-- End Register Form -->
+
+    <!-- Right - Login Form -->
     <div class="right">
+      {% with messages = get_flashed_messages() %}
+          {% for message in messages %}
+            <div class="alert alert-success alert-dismissable" role="alert" style="margin-top: 20px; margin-right: 20px; margin-left: 20px">
+              <button class="close" type="button" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">x</span>
+              </button>
+              {{message}}
+            </div>
+          {% endfor %}
+      {% endwith %}
       <div class="content">
-        <h2>Patient Login</h2>
-        <form method="post" action="{{ url_for('login') }}">
-          <div class="form-group">
-            <label for="pusername" class="form-label">Username </label>
-              
-            <input type="text" name="username" />
-          </div>
-            
-            <div class="form-group">
-                <br>
-          <label for="ppassword" class="form-label">Password </label>
-                <br>
-              
-            <input type="password" name="password" />
-          </div>
-            
-            
-          
-          <button id="login" type="submit">Login</button>
-        </form>
-          <button id="goRight" class="off">Sign Up</button>
+        <div class="login">
+          <div class="login-triangle"></div>
+          <h2 class="login-header" style="color: #FFFFFF">Patient Login</h2>
+          <form method="post" action="{{ url_for('login') }}" class="login-container">
+            <p><input type="text" placeholder="Username" name="username"></p>
+            <p><input type="password" placeholder="Password" name="password"></p>
+            <p><input type="submit" value="Log in"></p>
+          </form>
+        </div>
+          <button id="goRight" class="on" style="color:white; margin-top: 10px">Sign Up</button>
       </div>
     </div>
+    <!-- End Login Form -->
   </div>
 </div>
 
 
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script type="text/javascript"
          src="{{ url_for('static', filename='js/login.js') }}"></script>
-
 </body>
 </html>
 

@@ -51,6 +51,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="https://github.com/PharmaCat/Application" style="font-size:20px;">Developers</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('doclogin') }}" style="font-size:20px;">Doctors</a>
+                                </li>
                             </ul>
                         </div>
                         <a class="mb-10 mr-10 badge badge-pill badge-primary" style="font-size: 25px;" href="{{url_for('login')}}">Diagnose</a>
@@ -77,21 +80,21 @@
                     <div class="col-xl-2 col-sm-6 col-md-4 single-footer-widget">
                         <h4>Patients</h4>
                         <ul>
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">Register</a></li>
+                            <li><a href="{{ url_for('login') }}">Login</a></li>
+                            <li><a href="{{ url_for('register') }}">Register</a></li>
                         </ul>
                     </div>
                     <div class="col-xl-2 col-sm-6 col-md-4 single-footer-widget">
                         <h4>Doctors</h4>
                         <ul>
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">Register</a></li>
+                            <li><a href="{{ url_for('doclogin') }}">Login</a></li>
+                            <li><a href="{{ url_for('docregister') }}">Register</a></li>
                         </ul>
                     </div>
                     <div class="col-xl-2 col-sm-6 col-md-6 single-footer-widget">
                         <h4>Developers</h4>
                         <ul>
-                            <li><a href="https://github.com/apratimshukla6/PharmaCat">PharmaCat API</a></li>
+                            <li><a href="#">PharmaCat API</a></li>
                         </ul>
                     </div>
                     <div class="col-xl-3 col-sm-6 col-md-6 single-footer-widget">
