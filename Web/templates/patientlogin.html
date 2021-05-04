@@ -27,7 +27,7 @@
         <div class="login">
           <div class="login-triangle"></div>
           <h2 class="login-header" style="color: #FFFFFF">Patient Sign Up</h2>
-          <form method="post" action="{{ url_for('register') }}" style="height:440px;overflow-y:auto" class="login-container">
+          <form method="post" action="{{ url_for('register') }}" style="height:420px;overflow-y:auto" class="login-container">
               <p><input type="text" placeholder="Full Name" name="full_name"></p>
               <p><input type="text" placeholder="Username" name="username" /></p>
               <p><input type="text" placeholder="Email" name="email"></p>
@@ -47,38 +47,6 @@
               <p><input type="submit" value="Sign Up"></p>
           </form>
         </div>
-        <!-- <h2>Patient Sign Up</h2>
-        <form method="post" action="{{ url_for('register') }}">
-          <div class="form-group">
-              <input type="text" placeholder="Full Name" name="full_name"/>
-            <input type="text" placeholder="Username" name="username" />
-               
-               <input type="text" placeholder="Email" name="email"/>
-               <input type="text" placeholder="Address" name="address" />
-              <br><br>
-               <select placeholder="Blood Group" name="blood" style="padding: 10px;border:0px;font-size: 15px;outline: none;">
-                 <option value="A+">A+</option>
-                 <option value="A-">A-</option>
-                 <option value="B+">B+</option>
-                 <option value="B-">B-</option>
-                 <option value="AB+">AB+</option>
-                 <option value="AB-">AB-</option>
-                 <option value="O+">O+</option>
-                 <option value="O-">O-</option>
-               </select>
-              <br>
-               <input type="number" placeholder="Age" name="age" min="0" max="150">
-              <br>
-               <input type="password" placeholder="Password" name="password" />
-
-               
-          </div>
-          <div class="form-group"></div>
-          <div class="form-group"></div>
-          <div class="form-group"></div>
-        
-        <button type="submit">Sign up</button>
-        </form> -->
         <button id="goLeft" class="on" style="background-color: white; margin-top:10px; margin-bottom: 10px">Login</button>
       </div>
     </div>

@@ -58,23 +58,21 @@
             </div>
             </div>
     </div>
-    
-    <div class="tab-content">
+      {% if ans %}
+      <div class="tab-content">
         <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
             <div class="row">
                 <div class="col-lg-8">
                     
             <div class="main-card mb-3 card">
-                        <div class="card-body"><h5 class="card-title">Possible Disease</h5>
+                        <div class="card-body"><h5 class="card-title">How are you feeling?</h5>
                             
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab-eg11-0" role="tabpanel">
-                            <div class="mb-2 mr-2 badge badge-pill badge-danger">{{ ans }}</div>
-                                    
-                                    <br><br>
-                                    <h5 class="card-title">Not Happy with the response? </h5>
-                                    <a href="/chat" class="mb-2 mr-2 btn btn-primary" style="color:white;">Live Chat with a Doctor<span class="badge badge-light">BETA</span></a>
-                    <a href="{{ url_for('book') }}" class="mb-2 mr-2 btn btn-secondary" style="color:white;">Make an Appointment</a>
+                            <form class="" action="{{ url_for('diagnosedetails') }}" method="post">
+                                <div class="position-relative form-group"><label for="exampleText" class="">Elaborate your feelings here</label><textarea name="feel" id="exampleText" class="form-control"></textarea></div>
+                                <button class="btn btn-primary">Analyze</button>
+                            </form>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +81,28 @@
                 </div>
             </div>
         </div>
-    </div>              
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="main-card mb-3 card">
+                        <div class="card-body"><h5 class="card-title">Possible Disease</h5>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab-eg11-0" role="tabpanel">
+                                    <div class="mb-2 mr-2 badge badge-pill badge-danger">{{ ans }}</div>
+                                    <br><br>
+                                    <h5 class="card-title">Not Happy with the response? </h5>
+                                    <a href="/chat" class="mb-2 mr-2 btn btn-primary" style="color:white;">Live Chat with a Doctor<span class="badge badge-light">BETA</span></a>
+                                    <a href="{{ url_for('book') }}" class="mb-2 mr-2 btn btn-secondary" style="color:white;">Make an Appointment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    {% endif %}             
 </div>
 {% endblock %}

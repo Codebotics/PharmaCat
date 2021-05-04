@@ -7,7 +7,11 @@
 <link rel="icon" href="/static/img/favicon.png">
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type=text/css href="{{url_for('static',filename='css/login.css')}}" >
 <link rel="stylesheet" type=text/css href="{{url_for('static',filename='css/login1.css')}}" >
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -20,13 +24,18 @@
   <div class="topLayer">
     <div class="left">
       <div class="content">
-        <h2>Doctor Sign Up</h2>
-        <form method="post" action="{{ url_for('docregister') }}">
-          <div class="form-group">
-              <input type="text" name="full_name" placeholder="Doctor's Full Name" />
-              <br><br>
-            <div class="dropdown">       
-              <select name="specialization" placeholder="Doctor's Specialization" style="padding: 10px;border:0px;font-size: 15px;outline: none;">
+        <div class="login">
+          <div class="login-triangle"></div>
+          <h2 class="login-header" style="color: #FFFFFF">Doctor Sign Up</h2>
+          <form method="post" action="{{ url_for('docregister') }}" style="height:450px;overflow-y:auto;" class="login-container">
+              <p><input type="text" placeholder="Full Name" name="full_name"></p>
+              <p><input type="text" name="username" placeholder="Username"/></p>
+              <p><input type="text" name="email" placeholder="Email" /></p>
+              <p><input type="text" name="registration_number" placeholder="Doctor's Registration Number" /></p>
+              <p><input type="text" name="address" placeholder="Address" /></p>
+              <p><input type="text" name="contact_number" placeholder="Contact Number" /></p>
+              <p><input type="password" name="password" placeholder="Password" /></p>
+              <p><select name="specialization" placeholder="Doctor's Specialization" style="padding: 10px;border:0px;font-size: 15px;">
                  <option value="Dermatologist">Dermatologist</option>
                  <option value="Allergist/Immunologists">Allergist/Immunologists</option>
                  <option value="Gastroenterologist">Gastroenterologist</option>
@@ -47,29 +56,39 @@
                   <option value="Urologist">Urologist</option>
                   <option value="Expert Physician">Expert Physician</option>
                   <option value="Physician">Physician</option>
-               </select>
-              </div>
-            <input type="text" name="username" placeholder="Doctor's Username" />
-               <input type="text" name="email" placeholder="Doctor's Email" />
-               <input type="text" name="registration_number" placeholder="Doctor's Registration Number" />
-               <input type="text" name="address" placeholder="Doctor's Address" />
-               <input type="password" name="password" placeholder="Doctor's Password" />
-               <input type="text" name="contact_number" placeholder="Doctor's Contact Number" />
-          </div>
-          <div class="form-group"></div>
-          <div class="form-group"></div>
-          <div class="form-group"></div>
-            
-        <button type="submit">Sign up</button>
-           
-          
-        </form> 
-          <button id="goLeft" class="off">Login</button><br>
-        
+               </select></p>
+              <p><input type="submit" value="Sign Up"><p>
+          </form>
+        </div>
+        <button id="goLeft" class="on" style="margin-top:10px; margin-bottom: 10px; color:white">Login</button>
       </div>
     </div>
+
+    <!-- Right - Login Form -->
     <div class="right">
+      {% with messages = get_flashed_messages() %}
+          {% for message in messages %}
+            <div class="alert alert-success alert-dismissable" role="alert" style="margin-top: 20px; margin-right: 20px; margin-left: 20px">
+              <button class="close" type="button" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">x</span>
+              </button>
+              {{message}}
+            </div>
+          {% endfor %}
+      {% endwith %}
       <div class="content">
+        <div class="login">
+          <div class="login-triangle"></div>
+          <h2 class="login-header" style="color: #FFFFFF">Doctor Login</h2>
+          <form method="post" action="{{ url_for('doclogin') }}" class="login-container">
+            <p><input type="text" placeholder="Username" name="username"></p>
+            <p><input type="password" placeholder="Password" name="password"></p>
+            <p><input type="submit" value="Log in"></p>
+          </form>
+        </div>
+          <button id="goRight" class="on" style="color:white; margin-top: 10px">Sign Up</button>
+      </div>
+      <!-- <div class="content">
         <h2>Doctor Login</h2>
         <form method="POST" action="{{ url_for('doclogin') }}">
           <div class="form-group">
@@ -88,7 +107,7 @@
           <button  type="submit">Login</button>
         </form>
                <button id="goRight" class="off">Sign Up</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

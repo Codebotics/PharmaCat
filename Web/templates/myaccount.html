@@ -1,0 +1,142 @@
+{% extends 'dashboardExtender.html' %}
+
+{% block sidebar %}
+<div class="scrollbar-sidebar">
+    <div class="app-sidebar__inner">
+        <ul class="vertical-nav-menu">
+            <li class="app-sidebar__heading">Dashboard</li>
+            <li>
+                <a href="{{ url_for('home') }}">
+                    <i class="metismenu-icon fa fa-home"></i>
+                    Home
+                </a>
+            </li>
+            
+            <li>
+                <a href="{{ url_for('bmi') }}">
+                    <i class="metismenu-icon fa fa-user">
+                    </i>BMI
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('diagnose') }}">
+                    <i class="metismenu-icon fa fa-plus-circle">
+                    </i>Diagnose(Symptoms)
+                </a>
+            </li>
+            
+            <li>
+                <a href="{{ url_for('diagnosedetails') }}">
+                    <i class="metismenu-icon fa fa-plus-square">
+                    </i>Diagnose(Text)
+                </a>
+            </li>
+            
+             <li>
+                <a href="{{ url_for('hospitals') }}">
+                    <i class="metismenu-icon fa fa-rocket">
+                    </i>Hospitals
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block body %}
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="fa fa-file-text icon-gradient bg-amy-crisp"> </i>
+                </div>
+                <div>My Account
+                    <div class="page-title-subheading">View Your Account Details
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+            <div class="row">
+                <div class="col-lg-8">
+                    
+                    <div class="main-card mb-3 card">
+                        <div class="card-body"><h5 class="card-title"></h5>
+                            
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab-eg11-0" role="tabpanel">
+                                    <table class="mb-0 table table-striped">
+                                        <thead>
+                                            <th>Account Information</th>
+                                            <th>Detail</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Username</th>
+                                                <td>{{ account[1] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Email</th>
+                                                <td>{{ account[3] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Name</th>
+                                                <td>{{ account[4] }}</td>
+                                            </tr>
+                                            {% if isDoctor %}
+                                            <tr>
+                                                <th scope="row">Registration No.</th>
+                                                <td>{{ account[5] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Contact No.</th>
+                                                <td>{{ account[6] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Hospital</th>
+                                                <td>{{ account[7] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Specialization</th>
+                                                <td>{{ account[8] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Address</th>
+                                                <td>{{ account[9] }}</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if not isDoctor %}
+                                            <tr>
+                                                <th scope="row">Address</th>
+                                                <td>{{ account[5] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Blood Group</th>
+                                                <td>{{ account[6] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Age</th>
+                                                <td>{{ account[7] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">API Token</th>
+                                                <td>{{ account[8] }}</td>
+                                            </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
