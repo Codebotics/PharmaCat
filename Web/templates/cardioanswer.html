@@ -2,21 +2,19 @@
 <html lang="en">
 
 <head>
-<meta charset="utf-8">
-<link rel="icon" href="/static/img/favicon.png">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Content-Language" content="en">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>PharmaCat | Set Hospital</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-<meta name="description" content="A revolutionary online cross-platform health application.">
-<meta name="msapplication-tap-highlight" content="no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Diagnose</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="A revolutionary online cross-platform health application.">
+    <meta name="msapplication-tap-highlight" content="no">
 <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 <body>
-    
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
@@ -103,14 +101,12 @@
                         </div>
                     </div>        </div>
             </div>
-        </div>        
-        <div class="ui-theme-settings">
+        </div>        <div class="ui-theme-settings">
             <button type="button" id="TooltipDemo" class="btn-open-options btn btn-warning">
                 <i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i>
             </button>
-        </div>  
         
-        <div class="app-main">
+        </div>        <div class="app-main">
                 <div class="app-sidebar sidebar-shadow">
                     <div class="app-header__logo">
                         <div class="logo-src"></div>
@@ -196,11 +192,10 @@
                             <div class="page-title-wrapper">
                                 <div class="page-title-heading">
                                     <div class="page-title-icon">
-                                        <i class="fa fa-server icon-gradient bg-amy-crisp"> </i>
+                                        <i class="fa fa-file-text icon-gradient bg-amy-crisp"> </i>
                                     </div>
-                                    <div>Set Hospital
-                                        <div class="page-title-subheading">
-                                            Set the Hospital where you are working
+                                    <div>Diagnose
+                                        <div class="page-title-subheading">Diagnose your problems
                                         </div>
                                     </div>
                                 </div>
@@ -213,22 +208,25 @@
                                     <div class="col-lg-8">
                                         
                                 <div class="main-card mb-3 card">
-                                            <div class="card-body"><h5 class="card-title">Select your Hospital</h5>
+                                            <div class="card-body"><h5 class="card-title">Cardiovascular Disease Test Results:</h5>
                                                 
                                                 <div class="tab-content">
                                                     <div class="tab-pane active" id="tab-eg11-0" role="tabpanel">
+                                            
+                                        
+                                            
+                                                     
+                                        
+                                            
+                                                <div class="mb-2 mr-2 badge badge-pill badge-danger">{{ ans }}</div>
+                                                        
+                                                      
+                                                        
 
-                                                <form class="" action="{{ url_for('hospitalset') }}" method="post">
-                                                    
-                                                    <select class="mb-2 form-control" name="hname">
-                                                        {% for i in places: %}
-                                                        <option value="{{ i }}">{{ i }}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                    <button class="btn btn-primary">Proceed</button>
-                                                </form>
+                                                       
+                                        
                                                     </div>
-                                                </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -238,18 +236,14 @@
                             </div>
                         </div>
                             
-         
-         
-      <div class="app-wrapper-footer">
+                    </div>
+                
+  <div class="app-wrapper-footer">
                         <div class="app-footer">
                             <div class="app-footer__inner">
                                 <div class="app-footer-left">
                                     <ul class="nav">
-                                        <li class="nav-item">
-                                            
-                                                &copy; 2019 PharmaCat is an educational instance.
-                                            
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                                 <div class="app-footer-right">
@@ -262,12 +256,11 @@
                                     </ul>
                                 </div>
                             </div>
-          </div>
+                        </div>
+                    </div>    
         </div>
-        
                 
-    
+        </div>
     </div>
 <script type="text/javascript" src="{{ url_for('static', filename='assets/scripts/main.js') }}"></script></body>
 </html>
-                

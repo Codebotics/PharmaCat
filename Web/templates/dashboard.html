@@ -6,7 +6,7 @@
         <ul class="vertical-nav-menu">
             <li class="app-sidebar__heading">Dashboard</li>
             <li>
-                <a href="{{ url_for('home') }}" class="mm-active">
+                <a href="{{ url_for('home') }}">
                     <i class="metismenu-icon fa fa-home"></i>
                     Home
                 </a>
@@ -29,6 +29,13 @@
                 <a href="{{ url_for('diagnosedetails') }}">
                     <i class="metismenu-icon fa fa-plus-square">
                     </i>Diagnose(Text)
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('diagnosecardio') }}" >
+                    <i class="metismenu-icon fa fa-plus-circle">
+                    </i>Diagnose(Cardio)
                 </a>
             </li>
             

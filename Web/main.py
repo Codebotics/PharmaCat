@@ -25,7 +25,8 @@ import json
 import requests
 import nltk
 import pybase64
-
+from datetime import date
+from sklearn.preprocessing import normalize
 
 app = Flask(__name__)
 
@@ -637,6 +638,77 @@ def diagnosedetails():
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
+# Diagnose Based on the Cardiovascular problems
+@app.route('/diagnosecardio',methods=['GET','POST'])
+def diagnosecardio():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        
+        cursor = mysql.get_db().cursor()
+        cursor.execute('SELECT * FROM users WHERE ID = %s', [session['id']])
+        account = cursor.fetchone()
+
+        
+        if(request.method == 'POST'):
+            filename = 'fcardio.sav'
+
+            Ageorig = 2021 - 50
+            Current_date = date(2021,6,1)
+            DOB = date(Ageorig,1,1)
+            delta = Current_date - DOB
+            Age = delta.days
+
+            gender = request.form['Gender']
+            height = request.form['Height']
+            weight= request.form['weight'] # in kilograms
+            systolicbloodpressure= request.form['Sys'] # Systolic blood pressure
+            diastolicbloodpressure= request.form['Dys'] # Diastolic blood pressure
+            cholesterol= request.form['Chol'] # 1: normal, 2: above normal, 3: well above normal
+            gluc= request.form['Gluc'] # 1: normal, 2: above normal, 3: well above normal
+            smoke= request.form['Smoke'] # 1 if you smoke, 0 if not
+            alco= request.form['Alco'] # 1 if you drink alcohol, 0 if not
+            active= request.form['Active'] # 1 if you do physical activity, 0 if not
+
+
+            agedayscale=(Age-10798)/(23713-10798)
+            heightscale=(int(height)-55)/(250-55)
+            weightscale=(int(weight)-10)/(200-10)
+            sbpscale=(int(systolicbloodpressure)-(-150))/(16020-(-150))
+            dbpscale=(int(diastolicbloodpressure)-(-70))/(11000-(-70))
+            cholesterolscale=(int(cholesterol)-1)/(3-1)
+            glucscale=(int(gluc)-1)/(3-1)
+
+            single=np.array([agedayscale, gender, heightscale, weightscale, sbpscale, dbpscale, cholesterolscale, glucscale, smoke, alco, active ])
+
+            # single=np.array([0.9999423466430055,
+            # 9.194872153039131e-05,
+            # 0.007769666969318066,
+            # 0.003310153975094087,
+            # 0.0055169232918234785,
+            # 0.0036779488612156525,
+            # 4.5974360765195655e-05,
+            # 4.5974360765195655e-05,
+            # 0.0,
+            # 0.0,
+            # 4.5974360765195655e-05])
+
+            singledf=pd.DataFrame(single)
+            data=singledf.transpose()
+
+            loaded_model = pickle.load(open(filename, 'rb'))
+            p=loaded_model.predict(data)
+            if(p[0]==0.0):
+                resultcardio = "Negative"
+            else:
+                resultcardio = "Positive"
+
+            return render_template('cardioanswer.html',account=account,ans=resultcardio)
+        else:
+            return render_template('cardiodetails.html',account=account)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
 # Account information visible inside dashboard
 @app.route('/myaccount')
 def myaccount():
@@ -875,6 +947,6 @@ def logout():
 
 #run the Flask Server
 if __name__ == '__main__':
-	socketio.run(app, host='0.0.0.0', port=port, debug=True)
+	socketio.run(app, debug=True)
     
 """-------------------------------End of Web Application-------------------------------"""
