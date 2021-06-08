@@ -11,7 +11,7 @@ The PharmaCat Project is divided into **3 sections**:
 
 ...The Web Application(utilizes Flask) and API Server created by [Apratim Shukla](https://github.com/apratimshukla6), [Mayank Tolani](https://github.com/mak1082) and [Swapnil Mishra](https://github.com/Swapnil0115)
 
-... The Machine Learning and NLP based diagnosis created (utilizes Flask) by [Raj Sangani] (https://github.com/rajlm10) 
+... The Machine Learning and NLP based diagnosis created (utilizes Flask) by [Raj Sangani](https://github.com/rajlm10) 
 
 *To setup the Web Application along with API server do:*
 ```
