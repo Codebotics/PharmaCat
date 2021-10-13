@@ -17,7 +17,7 @@ This project was created solely for educational purposes and is not intended for
 The PharmaCat Project is divided into **2 sections**:
 
 
-...The PharmaCat Android App (based on PharmaCat REST API) 
+...The PharmaCat Android Application (based on PharmaCat REST API) 
 
 ...The Web Application (utilizes Flask) and the corresponding API Server 
 
@@ -142,7 +142,7 @@ Felix Gräßer, Surya Kallumadi, Hagen Malberg, and Sebastian Zaunseder. 2018. A
 
 ## RBF Network Based Prediction
 
-![image](https://user-images.githubusercontent.com/46895613/124163377-305ce300-dabd-11eb-83db-977b908e0927.png)
+![image] (https://user-images.githubusercontent.com/46895613/124163377-305ce300-dabd-11eb-83db-977b908e0927.png)
 
 ## Describe How You Feel
 
@@ -150,12 +150,12 @@ Felix Gräßer, Surya Kallumadi, Hagen Malberg, and Sebastian Zaunseder. 2018. A
 
 ## NLP Based Prognosis 
 
-![image](https://user-images.githubusercontent.com/46895613/124163342-263ae480-dabd-11eb-95e9-5828168c916b.png)
+![image] (https://user-images.githubusercontent.com/46895613/124163342-263ae480-dabd-11eb-95e9-5828168c916b.png)
 
 
 ## Live Chat With Doctor 
 
-![image](https://user-images.githubusercontent.com/46895613/124163433-39e64b00-dabd-11eb-900a-cd12bdbd5491.png)
+![image] (https://user-images.githubusercontent.com/46895613/124163433-39e64b00-dabd-11eb-900a-cd12bdbd5491.png)
 
 
 
